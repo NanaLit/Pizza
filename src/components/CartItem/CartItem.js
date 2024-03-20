@@ -1,5 +1,5 @@
 import React from 'react';
-// import { useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
 // import { addItem, minusItem, removeItem } from '../redux/cart/slice';
 // import { CartItem as CartItemType } from '../redux/cart/types';
 
@@ -15,12 +15,12 @@ import React from 'react';
 
 const CartItem = ({
   id,
-  title,
+  name,
   type,
   size,
   price,
   count,
-  imageUrl,
+  imageURL,
 }) => {
 //   const dispatch = useDispatch();
 
@@ -45,12 +45,12 @@ const CartItem = ({
   return (
     <div className="cart__item">
       <div className="cart__item-img">
-        {/* <img className="pizza-block__image" src={imageUrl} alt="Pizza" /> */}
+        <img className="pizza-block__image" src={imageURL} alt="Pizza" />
       </div>
       <div className="cart__item-info">
-        <h3>название пиццы</h3>
+        <h3>{name}</h3>
         <p>
-          {/* {type}, {size} см. */}
+          {type}, {size} см.
         </p>
       </div>
       <div className="cart__item-count">

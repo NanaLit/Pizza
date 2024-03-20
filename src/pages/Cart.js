@@ -1,8 +1,11 @@
 import React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import CartItem  from '../components/CartItem/CartItem';
 import { Link } from 'react-router-dom';
 
 function Cart() {
+    const dispatch = useDispatch();
+    const items = useSelector(state => state.cart.items);
     return (
         <div className="container container--cart">
             <div className="cart">
@@ -74,9 +77,9 @@ function Cart() {
                 </div>
             </div>
             <div className="content__items">
-                {/* {items.map((item) => (
+                {items.map((item) => (
                     <CartItem key={item.id} {...item} />
-                ))} */}
+                ))}
             </div>
             <div className="cart__bottom">
                 <div className="cart__bottom-details">

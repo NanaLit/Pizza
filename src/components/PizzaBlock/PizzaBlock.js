@@ -4,10 +4,14 @@ import { addItem } from '../../redux/slices/cartSlice';
 import './_pizzaBlock.scss';
 
 export default function PizzaBlock({name, price, imageURL, sizes, types, id}) {
+
+	const cartItem = useSelector(state => state.cart.items.find(obj => obj.id === id))
     
     const [activeType, setActiveType] = useState(0);
     const [activeSize, setActiveSize] = useState(1);
     const typeNames = ["тонкое", "традиционное"];
+	// const sizesValues = []
+	const addedCount = cartItem ? cartItem.count : 0;
 
 	const dispatch = useDispatch();
 
@@ -71,7 +75,7 @@ export default function PizzaBlock({name, price, imageURL, sizes, types, id}) {
 					/>
 				</svg>
 				<span>Добавить</span>
-				{/* {addedCount > 0 && <i>{addedCount}</i>} */}
+				{addedCount > 0 && <i>{addedCount}</i>}
 				</button>
 			</div>
 			</div>
