@@ -1,12 +1,17 @@
 import React from 'react';
 import logoSvg from './../../resourses/img/pizza-logo.svg';
 import { Link } from 'react-router-dom';
+import {useSelector} from "react-redux";
 
 import Search from '../Search/Search';
 
 import './_header.scss';
 
 const Header = () => {
+
+  const {items, totalPrice }  = useSelector(state => state.cart);
+  const totalCount = items.length;
+
   return (
     <div className="header">
       <div className="container">
@@ -24,8 +29,7 @@ const Header = () => {
         <div className="header__cart">
           {/* {location.pathname !== '/cart' && ( */}
             <Link to="/cart" className="button button--cart">
-              {/* <span>{totalPrice} ₽</span> */}
-              <span>200 ₽</span>
+              <span>{totalPrice} ₽</span>
               <div className="button__delimiter"></div>
               <svg
                 width="18"
@@ -55,7 +59,7 @@ const Header = () => {
                   strokeLinejoin="round"
                 />
               </svg>
-              {/* <span>{totalCount}</span> */}
+              <span>{totalCount}</span>
             </Link>
           {/* )} */}
         </div>

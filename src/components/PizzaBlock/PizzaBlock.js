@@ -1,4 +1,6 @@
-import React, {useState} from 'react'
+import React, {useState} from 'react';
+import { UseDispatch, useDispatch, useSelector } from 'react-redux';
+import { addItem } from '../../redux/slices/cartSlice';
 import './_pizzaBlock.scss';
 
 export default function PizzaBlock({name, price, imageURL, sizes, types, id}) {
@@ -6,18 +8,20 @@ export default function PizzaBlock({name, price, imageURL, sizes, types, id}) {
     const [activeType, setActiveType] = useState(0);
     const [activeSize, setActiveSize] = useState(1);
     const typeNames = ["тонкое", "традиционное"];
+
+	const dispatch = useDispatch();
+
     const onClickAdd = () => {
-        // const item: CartItem = {
-        //   id,
-        //   title,
-        //   price,
-        //   imageUrl,
-        //   type: typeNames[activeType],
-        //   size: sizes[activeSize],
-        //   count: 0,
-        // };
-        // dispatch(addItem(item));
-        console.log('click')
+        const item = {
+          id,
+          name,
+          price,
+          imageURL,
+          type: typeNames[activeType],
+          size: sizes[activeSize],
+          count: 0,
+        };
+        dispatch(addItem(item));
       };
     return (
         <div className="pizza-block-wrapper" >
