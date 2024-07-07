@@ -1,6 +1,6 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
-// import { addItem, minusItem, removeItem } from '../redux/cart/slice';
+import { addItem, minusItem, removeItem } from '../../redux/slices/cartSlice';
 // import { CartItem as CartItemType } from '../redux/cart/types';
 
 // type CartItemProps = {
@@ -22,25 +22,25 @@ const CartItem = ({
   count,
   imageURL,
 }) => {
-//   const dispatch = useDispatch();
+  const dispatch = useDispatch();
 
-//   const onClickPlus = () => {
-//     dispatch(
-//       addItem({
-//         id,
-//       }),
-//     );
-//   };
+  const onClickPlus = () => {
+    dispatch(
+      addItem({
+        id,
+      }),
+    );
+  };
 
-//   const onClickMinus = () => {
-//     dispatch(minusItem(id));
-//   };
+  const onClickMinus = () => {
+    dispatch(minusItem(id));
+  };
 
-//   const onClickRemove = () => {
-//     if (window.confirm('Ты действительно хочешь удалить товар?')) {
-//       dispatch(removeItem(id));
-//     }
-//   };
+  const onClickRemove = () => {
+    if (window.confirm('Ты действительно хочешь удалить товар?')) {
+      dispatch(removeItem(id));
+    }
+  };
 
   return (
     <div className="cart__item">
@@ -55,8 +55,8 @@ const CartItem = ({
       </div>
       <div className="cart__item-count">
         <button
-        //   disabled={count === 1}
-        //   onClick={onClickMinus}
+          disabled={count === 1}
+          onClick={onClickMinus}
           className="button button--outline button--circle cart__item-count-minus">
           <svg
             width="10"
@@ -72,9 +72,9 @@ const CartItem = ({
               fill="#EB5A1E"></path>
           </svg>
         </button>
-        <b>4</b>
+        <b>{count}</b>
         <button
-        //   onClick={onClickPlus}
+          onClick={onClickPlus}
           className="button button--outline button--circle cart__item-count-plus">
           <svg
             width="10"
@@ -92,11 +92,11 @@ const CartItem = ({
         </button>
       </div>
       <div className="cart__item-price">
-        <b>450 ₽</b>
+        <b>{price * count} ₽</b>
       </div>
       <div className="cart__item-remove">
         <div 
-        // onClick={onClickRemove} 
+        onClick={onClickRemove} 
         className="button button--outline button--circle">
           <svg
             width="10"
